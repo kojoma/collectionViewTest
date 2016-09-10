@@ -29,6 +29,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    // MARK: - UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: CustomCell = collectionView.dequeueReusableCellWithReuseIdentifier("customCell", forIndexPath: indexPath) as! CustomCell
@@ -42,6 +44,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.cellNumberList.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.updateCellNumberList(indexPath.row)
+        self.collectionView.performBatchUpdates({
+            self.collectionView.deleteItemsAtIndexPaths([indexPath])
+            }, completion: nil)
+    }
+    
+    // MARK: - private
+    private func updateCellNumberList(index: Int) {
+        self.cellNumberList.removeAtIndex(index)
     }
 }
 
