@@ -44,14 +44,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.cellNumberList.count
     }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.updateCellNumberList(indexPath.row)
-        self.collectionView.performBatchUpdates({
-            self.collectionView.deleteItemsAtIndexPaths([indexPath])
-            }, completion: nil)
-    }
-    
+
     // MARK: - private
     private func updateCellNumberList(index: Int) {
         self.cellNumberList.removeAtIndex(index)
